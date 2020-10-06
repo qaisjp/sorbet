@@ -848,6 +848,11 @@ string Symbol::show(const GlobalState &gs) const {
         }
     }
 
+    // Make sure that we get nice erorr messages for things involving the proc sig builders.
+    if (this->name == core::Names::Constants::DeclBuilderForProcs()) {
+        return "T.proc";
+    }
+
     if (!this->owner.exists() || this->owner == Symbols::root() ||
         this->owner.data(gs)->owner == Symbols::PackageRegistry()) {
         // <PackageRegistry> is an internal detail of --stripe-packages. It only owns synthetic modules that encapsulate
